@@ -23,9 +23,10 @@ def logState(state, lastState):
     if (state != lastState):
         print("Time: " + str(now) + " State: " + state)
 
-lastState = ""
-while True:
-    state = checkstate('https://google.com')
-    logState(state, lastState)
-    lastState = state
-    time.sleep(1)
+if __name__ == "__main__":
+    lastState = ""
+    while True:
+        state = checkstate('https://google.com')
+        logState(state, lastState)
+        lastState = state
+        time.sleep(1)
