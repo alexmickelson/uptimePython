@@ -2,7 +2,7 @@ import urllib.request
 import urllib.parse
 import urllib.error
 import time
-import datetime
+from datetime import datetime
 from socket import timeout
 
 
@@ -18,15 +18,15 @@ def checkstate(url):
             print("something else happened")
     return state
 
-def logState(state, lastState):
-    now = datetime.datetime.now()
+def getStateChange(state, lastState):
+    now = datetime.now()
     if (state != lastState):
-        print("Time: " + str(now) + " State: " + state)
+        return "New State: " + state + " Time: " + str(now) 
 
 if __name__ == "__main__":
     lastState = ""
     while True:
         state = checkstate('https://google.com')
-        logState(state, lastState)
+        print(getStateChange(state, lastState))
         lastState = state
         time.sleep(1)
