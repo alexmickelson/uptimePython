@@ -4,6 +4,7 @@ from uptimeCheck import getStateChange
 import unittest
 import unittest.mock as mock
 from socket import timeout
+import fileUpdate
 
 
 class CheckStateTest(unittest.TestCase):
@@ -34,6 +35,14 @@ class CheckStateTest(unittest.TestCase):
         mock_datetime.now.return_value = 'nowTime'
         returnValue = getStateChange("one", "two")
         self.assertEqual("New State: one Time: nowTime", returnValue)
+
+    def test_openFile(self):
+        fileName = "test.txt"
+        file = fileUpdate.openFile(fileName)
+        fileIsOpened = self.assertIsNotNone(file)
+
+        if file is fileIsOpened:
+            fileUpdate.closeFile(file)
 
 
 if __name__ == "__main__":
