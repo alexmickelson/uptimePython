@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from uptimeCheck import checkstate
 from uptimeCheck import getStateChange
 import unittest
