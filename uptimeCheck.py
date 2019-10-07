@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import urllib.request
+import urllib.error as error
 import urllib.parse
 import urllib.error
 import time
@@ -11,12 +12,12 @@ def checkstate(url):
     state = "up"
     try:
         urllib.request.urlopen(url, timeout=1)
-    except (urllib.error.URLError, timeout) as error:
-        if isinstance(error.reason, timeout):
-            print("timeout on: " + url)
-            state = "down"
-        else:
-            print("something else happened")
+    except (error.HTTPError, error.URLError):
+        print('Data not retrieved because %s\nURL: %s', error, url)
+        state = "down"
+    except timeout:
+        print("timeout occured " + url)
+        state = "down"
     return state
 
 
@@ -29,7 +30,7 @@ def getStateChange(state, lastState):
 if __name__ == "__main__":
     lastState = ""
     while True:
-        state = checkstate('https://sudo.snow.edu')
+        state = checkstate('https://google.com')
         print(getStateChange(state, lastState))
         lastState = state
         time.sleep(1)
