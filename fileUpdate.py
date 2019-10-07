@@ -4,11 +4,14 @@ import datetime
 
 def openFile(file):
     try:
-        open("logState.txt", "a+")
-        return True
+        f = open("logState.txt", "a+")
+        return f
     except IOError:
-        print("File cannot be opened")
-        return False
+        return None
+
+
+def closeFile(file):
+    file.close()
 
 
 # We should get the state, start time, calculate the

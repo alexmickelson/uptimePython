@@ -37,8 +37,10 @@ class CheckStateTest(unittest.TestCase):
         self.assertEqual("New State: one Time: nowTime", returnValue)
 
     def test_openFile(self):
-        ret = fileUpdate.openFile("test.txt")
-        self.assertTrue(ret)
+        fileName = "test.txt"
+        file = fileUpdate.openFile(fileName)
+        fileUpdate.closeFile(file)
+        self.assertIsNotNone(file)
 
 
 if __name__ == "__main__":
