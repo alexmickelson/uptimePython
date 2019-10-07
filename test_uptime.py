@@ -39,8 +39,10 @@ class CheckStateTest(unittest.TestCase):
     def test_openFile(self):
         fileName = "test.txt"
         file = fileUpdate.openFile(fileName)
-        fileUpdate.closeFile(file)
-        self.assertIsNotNone(file)
+        fileIsOpened = self.assertIsNotNone(file)
+
+        if file is fileIsOpened:
+            fileUpdate.closeFile(file)
 
 
 if __name__ == "__main__":
