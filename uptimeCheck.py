@@ -11,22 +11,24 @@ def checkstate(url):
     try:
         urllib.request.urlopen(url, timeout=1)
     except (urllib.error.URLError, timeout) as error:
-        if isinstance(error.reason,timeout):
+        if isinstance(error.reason, timeout):
             print("timeout on: " + url)
-            state="down"
+            state = "down"
         else:
             print("something else happened")
     return state
 
+
 def getStateChange(state, lastState):
     now = datetime.now()
     if (state != lastState):
-        return "New State: " + state + " Time: " + str(now) 
+        return "New State: " + state + " Time: " + str(now)
+
 
 if __name__ == "__main__":
     lastState = ""
     while True:
-        state = checkstate('https://google.com')
+        state = checkstate('https://sudo.snow.edu')
         print(getStateChange(state, lastState))
         lastState = state
         time.sleep(1)
