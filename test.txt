@@ -17,3 +17,8 @@ State: down; TimeInSeconds: 1; StartTime: 2019-10-07T18:24:15.415728
 State: up; TimeInSeconds: 0; StartTime: 2019-10-07T18:25:20.954465
 State: down; TimeInSeconds: 13; StartTime: 2019-10-07T18:25:20.980423
 State: up; TimeInSeconds: 5; StartTime: 2019-10-07T18:25:34.430151
+State: down; TimeInSeconds: 72; StartTime: 2019-10-07T18:25:39.573898
+State: up; TimeInSeconds: 17; StartTime: 2019-10-07T18:45:53.112413
+State: down; TimeInSeconds: 7; StartTime: 2019-10-07T18:46:10.656993
+State: up; TimeInSeconds: 61; StartTime: 2019-10-07T18:46:18.045245
+State: down; TimeInSeconds: 1; StartTime: 2019-10-07T18:47:19.557751
