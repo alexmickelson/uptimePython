@@ -10,9 +10,10 @@ from datetime import datetime
 class State:
     def __init__(self,
                  currentState: str,
-                 startTime: datetime):
+                 startTime: datetime,
+                 durationInSeconds=0):
         self.currentState = currentState
-        self.totalTimeInSeconds = 0
+        self.totalTimeInSeconds = durationInSeconds
         self.startTime = startTime
 
     def updateRunningTime(self, offsetTime: datetime):
