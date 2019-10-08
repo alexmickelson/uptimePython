@@ -8,6 +8,7 @@ from datetime import datetime
 from socket import timeout
 import fileService
 import stateModel
+import uptimeNotification
 
 
 def checkSiteIsUp(url):
@@ -45,6 +46,9 @@ if __name__ == "__main__":
     while True:
         currentStatus = checkSiteIsUp('https://google.com')
         if(checkForStateChange(currentStatus, oldStatus)):
+            if (currentStatus == "down"):
+                uptimeNotification.sendEmail()
+
             updateAndPersistState(state)
             (oldStatus, state) = reinitializeDataInState(currentStatus)
         time.sleep(1)

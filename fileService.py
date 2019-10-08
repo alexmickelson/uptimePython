@@ -4,6 +4,7 @@ this is a file handling module for uptimeCheck
 """
 import re
 import stateModel
+from datetime import datetime
 
 
 def writeFile(filePath, state):
@@ -22,15 +23,19 @@ def printFile(filePath):
     file.close()
 
 
-def getrecordedStates(filePath):
+def getRecordedStates(filePath):
     file = open(filePath, "r")
     lines = file.readlines()
     states = list()
     for line in lines:
-        stateVar = re.match(r'State: (.*); TimeInSeconds: (.*); StartTime: (.*)$', line, re.M | re.I)
-        states.append(stateModel.State(currentState=stateVar.group(1),
-                                       startTime=stateVar.group(3),
-                                       durationInSeconds=stateVar.group(2)))
+        stateVar = re.match(
+            r'State: (.*); TimeInSeconds: (.*); StartTime: (.*)$',
+            line, re.M | re.I)
+        startTime = datetime.fromisoformat(stateVar.group(3))
+        states.append(stateModel.State(
+            currentState=stateVar.group(1),
+            startTime=startTime,
+            durationInSeconds=int(stateVar.group(2))))
     return states
 
 

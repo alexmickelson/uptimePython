@@ -66,7 +66,8 @@ class CheckFileTest(unittest.TestCase):
         state = stateModel.State(currentState="up",
                                  startTime=startTime)
         actualSummary = state.getSummary()
-        expectedSummary = "State: up; TimeInSeconds: 0; StartTime: 1995-04-15T12:02:05"
+        expectedSummary = \
+            "State: up; TimeInSeconds: 0; StartTime: 1995-04-15T12:02:05"
         self.assertEqual(actualSummary, expectedSummary)
 
 
