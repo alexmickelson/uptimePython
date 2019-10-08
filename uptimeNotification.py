@@ -1,14 +1,9 @@
 #!/usr/bin/env python3
-
-import uptimeCalculator
-import fileService
 import smtplib
 
 
-def sendEmail():
-    stateCollection = fileService.getRecordedStates("test.txt")
-    myCalculator = uptimeCalculator.calculator(stateCollection)
-    print("Uptime: " + str(myCalculator.uptime()))
+def sendEmail(uptime: str):
+    print("Uptime: " + uptime)
     print("send smtp Request here")
     # sends but gets blocked by spam (local smtp in docker)
     try:

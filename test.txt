@@ -22,3 +22,17 @@ State: up; TimeInSeconds: 17; StartTime: 2019-10-07T18:45:53.112413
 State: down; TimeInSeconds: 7; StartTime: 2019-10-07T18:46:10.656993
 State: up; TimeInSeconds: 61; StartTime: 2019-10-07T18:46:18.045245
 State: down; TimeInSeconds: 1; StartTime: 2019-10-07T18:47:19.557751
+State: up; TimeInSeconds: 200; StartTime: 2019-10-08T09:10:54.275267
+State: up; TimeInSeconds: 0; StartTime: 2019-10-08T09:17:15.102605
+State: down; TimeInSeconds: 9; StartTime: 2019-10-08T09:17:15.105282
+State: up; TimeInSeconds: 12; StartTime: 2019-10-08T09:17:24.762827
+State: up; TimeInSeconds: 8; StartTime: 2019-10-08T10:57:31.762663
+State: up; TimeInSeconds: 10; StartTime: 2019-10-08T10:59:13.735092
+State: up; TimeInSeconds: 7; StartTime: 2019-10-08T11:00:30.168045
+State: down; TimeInSeconds: 25; StartTime: 2019-10-08T11:00:38.355766
+State: up; TimeInSeconds: 21; StartTime: 2019-10-08T11:01:08.162463
+State: up; TimeInSeconds: 41; StartTime: 2019-10-08T12:33:52.956564
+State: up; TimeInSeconds: 0; StartTime: 2019-10-08T12:35:56.364499
+State: down; TimeInSeconds: 15; StartTime: 2019-10-08T12:35:56.367845
+State: up; TimeInSeconds: 7; StartTime: 2019-10-08T12:36:12.134102
+State: down; TimeInSeconds: 35; StartTime: 2019-10-08T12:36:19.728051

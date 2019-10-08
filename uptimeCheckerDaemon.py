@@ -9,6 +9,7 @@ from socket import timeout
 import fileService
 import stateModel
 import uptimeNotification
+import uptimeCalculator
 
 
 def checkSiteIsUp(url):
@@ -40,15 +41,24 @@ def reinitializeDataInState(currentStatus):
                              startTime=datetime.now()))
 
 
+def sendNotification(state):
+    recordedStates = fileService.getRecordedStates("test.txt")
+    state.updateRunningTime(datetime.now())
+    recordedStates.append(state)
+    uptimeInt = uptimeCalculator.uptime(recordedStates)
+    uptimeNotification.sendEmail(str(uptimeInt))
+
+
 if __name__ == "__main__":
     state = stateModel.State(currentState="up", startTime=datetime.now())
     oldStatus = True
     while True:
         currentStatus = checkSiteIsUp('https://google.com')
         if(checkForStateChange(currentStatus, oldStatus)):
-            if (currentStatus == "down"):
-                uptimeNotification.sendEmail()
-
             updateAndPersistState(state)
+
+            if (currentStatus is False):
+                sendNotification(state)
+
             (oldStatus, state) = reinitializeDataInState(currentStatus)
         time.sleep(1)
