@@ -11,7 +11,7 @@ def sendEmail(uptime: str):
         server.sendmail(
             from_addr="test@localhost.com",
             to_addrs=['alexmickelson96@gmail.com'],
-            msg="test")
+            msg="Service is down!!!")
         print("sent Mail")
     except Exception as e:
         print(e)

@@ -55,8 +55,6 @@ if __name__ == "__main__":
     while True:
         currentStatus = checkSiteIsUp('https://google.com')
         if(checkForStateChange(currentStatus, oldStatus)):
-            if (currentStatus is False):
-                uptimeNotification.sendEmail()
 
             updateAndPersistState(state)
 
