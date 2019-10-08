@@ -6,31 +6,45 @@ import urllib.error
 import time
 from datetime import datetime
 from socket import timeout
+import fileService
+import stateModel
 
 
-def checkstate(url):
-    state = "up"
+def checkSiteIsUp(url):
+    state = True
     try:
         urllib.request.urlopen(url, timeout=1)
     except (error.HTTPError, error.URLError):
-        print('Data not retrieved because %s\nURL: %s', error, url)
-        state = "down"
+        state = False
     except timeout:
-        print("timeout occured " + url)
-        state = "down"
+        state = False
     return state
 
 
-def getStateChange(state, lastState):
-    now = datetime.now()
-    if (state != lastState):
-        return "New State: " + state + " Time: " + str(now)
+def checkForStateChange(currentStatus, oldStatus):
+    return currentStatus != oldStatus
+
+
+def updateAndPersistState(state):
+    state.updateRunningTime(datetime.now())
+    fileService.writeFile("test.txt", state)
+    print(state.getSummary())
+
+
+def reinitializeDataInState(currentStatus):
+
+    currentState = "up" if currentStatus else "down"
+    return (currentStatus,
+            stateModel.State(currentState=currentState,
+                             startTime=datetime.now()))
 
 
 if __name__ == "__main__":
-    lastState = ""
+    state = stateModel.State(currentState="up", startTime=datetime.now())
+    oldStatus = True
     while True:
-        state = checkstate('https://google.com')
-        print(getStateChange(state, lastState))
-        lastState = state
+        currentStatus = checkSiteIsUp('https://google.com')
+        if(checkForStateChange(currentStatus, oldStatus)):
+            updateAndPersistState(state)
+            (oldStatus, state) = reinitializeDataInState(currentStatus)
         time.sleep(1)

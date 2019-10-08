@@ -2,15 +2,26 @@
 """
     States are stored with their current state, total time in seconds
     and start time, to calculate our total uptime
+    #datetime.fromtimestamp(1485714600).strftime("%A, %B %d, %Y %I:%M:%S")
 """
-import datetime
+from datetime import datetime
 
 
 class State:
     def __init__(self,
                  currentState: str,
-                 totalTimeInSeconds: int,
-                 startTime: datetime.datetime):
+                 startTime: datetime):
         self.currentState = currentState
-        self.totalTimeInSeconds = totalTimeInSeconds
+        self.totalTimeInSeconds = 0
         self.startTime = startTime
+
+    def updateRunningTime(self, offsetTime: datetime):
+        offset = offsetTime - self.startTime
+        self.totalTimeInSeconds = int(offset.total_seconds())
+
+    def getSummary(self):
+        response = ""
+        response += "State: " + self.currentState + "; "
+        response += "TimeInSeconds: " + str(self.totalTimeInSeconds) + "; "
+        response += "StartTime: " + self.startTime.isoformat()
+        return response
